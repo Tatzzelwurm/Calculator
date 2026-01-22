@@ -18,6 +18,9 @@ operators.forEach((operator) =>
   operator.addEventListener("click", () => processInput(operator.textContent)),
 );
 
+const allClearBtn = document.querySelector("#allClearBtn");
+allClearBtn.addEventListener("click", () => clearCalculator());
+
 const display = document.querySelector("#display");
 display.textContent = "0";
 
@@ -81,4 +84,12 @@ function processInput(symbol) {
   operandOne = +expressionParts[0];
   operator = expressionParts[1];
   operandTwo = +expressionParts[2];
+}
+
+function clearCalculator() {
+  display.textContent = "0";
+  operandOne = undefined;
+  operandTwo = undefined;
+  operator = undefined;
+  expressionParts = [];
 }
