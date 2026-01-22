@@ -1,3 +1,8 @@
+body {
+  background-color: rgb(224, 248, 196);
+}
+
+
 #calculator {
   background-color: cadetblue;
   display: flex;
