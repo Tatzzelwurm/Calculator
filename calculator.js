@@ -33,10 +33,10 @@ function operate(operator, operandOne, operandTwo) {
     display.textContent = subtract(operandOne, operandTwo);
   }
   if (operator === "*") {
-    display.textContent = multiply(operandOne, operandTwo);
+    display.textContent = Number(multiply(operandOne, operandTwo));
   }
   if (operator === "÷") {
-    display.textContent = divide(operandOne, operandTwo);
+    display.textContent = Number(divide(operandOne, operandTwo));
   }
   if (
     operator === undefined ||
@@ -56,7 +56,7 @@ function subtract(operandOne, operandTwo) {
 }
 
 function multiply(operandOne, operandTwo) {
-  return (operandOne * operandTwo);
+  return (operandOne * operandTwo).toFixed(3);
 }
 
 function divide(operandOne, operandTwo) {
