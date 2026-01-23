@@ -59,7 +59,31 @@ function multiply(operandOne, operandTwo) {
 }
 
 function divide(operandOne, operandTwo) {
+  if (operandTwo == 0 && operandOne != 0) {
+    displayError(0)
+    return "Error 404: Logic not found"
+  }
+  else if (operandOne == 0 && operandTwo == 0) {
+    displayError(1)
+    return "¯\\_(ツ)_/¯"
+  }
+  else {
   return operandOne / operandTwo;
+  }
+}
+
+function displayError(errorCode) {
+  display.style.textAlign = "center"
+  display.style.color = "red"
+  if (errorCode == 0) {
+    display.style.fontSize = "30px"
+    display.style.lineHeight = "80px"
+  }
+  if (errorCode == 1) {
+  display.style.fontSize = "50px"
+  }
+
+ 
 }
 
 function isOperator(symbol) {
@@ -92,4 +116,8 @@ function clearCalculator() {
   operandTwo = undefined;
   operator = undefined;
   expressionParts = [];
+  display.style.fontSize = ""
+  display.style.textAlign = ""
+  display.style.color = ""
+  display.style.lineHeight = ""
 }
