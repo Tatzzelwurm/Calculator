@@ -2,7 +2,7 @@ let operandOne;
 let operandTwo;
 let operator;
 let expressionParts = [];
-let isErrorState = false
+let isErrorState = false;
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", () =>
@@ -36,7 +36,12 @@ function operate(operator, operandOne, operandTwo) {
     display.textContent = Number(multiply(operandOne, operandTwo));
   }
   if (operator === "÷") {
-    display.textContent = Number(divide(operandOne, operandTwo));
+    const result = divide(operandOne, operandTwo);
+    if (typeof result === "number") {
+      display.textContent = Number(result.toFixed(3));
+    } else {
+      display.textContent = result;
+    }
   }
   if (
     operator === undefined ||
@@ -61,39 +66,35 @@ function multiply(operandOne, operandTwo) {
 
 function divide(operandOne, operandTwo) {
   if (operandTwo == 0 && operandOne != 0) {
-    displayError(0)
-    return "Error 404: Logic not found"
-  }
-  else if (operandOne == 0 && operandTwo == 0) {
-    displayError(1)
-    return "¯\\_(ツ)_/¯"
-  }
-  else {
-  return (operandOne / operandTwo).toFixed(3);
+    displayError(0);
+    return "Error 404: Logic not found";
+  } else if (operandOne == 0 && operandTwo == 0) {
+    displayError(1);
+    return "¯\\_(ツ)_/¯";
+  } else {
+    return (operandOne / operandTwo);
   }
 }
 
 function displayError(errorCode) {
-  isErrorState = true
-  display.style.textAlign = "center"
-  display.style.color = "red"
+  isErrorState = true;
+  display.style.textAlign = "center";
+  display.style.color = "red";
   if (errorCode == 0) {
-    display.style.fontSize = "30px"
-    display.style.lineHeight = "80px"
+    display.style.fontSize = "30px";
+    display.style.lineHeight = "80px";
   }
   if (errorCode == 1) {
-  display.style.fontSize = "50px"
+    display.style.fontSize = "50px";
   }
-
- 
 }
 
 function isOperator(symbol) {
   return ["+", "-", "*", "÷"].includes(symbol);
 }
 
-function processInput(symbol) { 
-  if (isErrorState) return
+function processInput(symbol) {
+  if (isErrorState) return;
 
   if (display.textContent == 0 && !isOperator(symbol)) {
     // number = 0
@@ -120,9 +121,9 @@ function clearCalculator() {
   operandTwo = undefined;
   operator = undefined;
   expressionParts = [];
-  display.style.fontSize = ""
-  display.style.textAlign = ""
-  display.style.color = ""
-  display.style.lineHeight = ""
-  isErrorState = false
+  display.style.fontSize = "";
+  display.style.textAlign = "";
+  display.style.color = "";
+  display.style.lineHeight = "";
+  isErrorState = false;
 }
