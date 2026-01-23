@@ -2,6 +2,7 @@ let operandOne;
 let operandTwo;
 let operator;
 let expressionParts = [];
+let isErrorState = false
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", () =>
@@ -73,6 +74,7 @@ function divide(operandOne, operandTwo) {
 }
 
 function displayError(errorCode) {
+  isErrorState = true
   display.style.textAlign = "center"
   display.style.color = "red"
   if (errorCode == 0) {
@@ -90,7 +92,9 @@ function isOperator(symbol) {
   return ["+", "-", "*", "÷"].includes(symbol);
 }
 
-function processInput(symbol) {
+function processInput(symbol) { 
+  if (isErrorState) return
+
   if (display.textContent == 0 && !isOperator(symbol)) {
     // number = 0
     display.textContent = display.textContent.replace("0", symbol);
@@ -120,4 +124,5 @@ function clearCalculator() {
   display.style.textAlign = ""
   display.style.color = ""
   display.style.lineHeight = ""
+  isErrorState = false
 }
