@@ -33,10 +33,10 @@ function operate(operator, operandOne, operandTwo) {
     display.textContent = subtract(operandOne, operandTwo);
   }
   if (operator === "*") {
-    display.textContent = multiply(operandOne, operandTwo);
+    display.textContent = multiply(operandOne, operandTwo).toFixed(3);
   }
   if (operator === "÷") {
-    display.textContent = divide(operandOne, operandTwo);
+    display.textContent = divide(operandOne, operandTwo).toFixed(3);
   }
   if (
     operator === undefined ||
