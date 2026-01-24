@@ -3,6 +3,10 @@ let operandTwo;
 let operator;
 let expressionParts = [];
 let isErrorState = false;
+let isDisabled = true;
+
+const powerBtn = document.querySelector("#powerBtn");
+powerBtn.addEventListener("click", () => toggleCalculator());
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", () =>
@@ -23,9 +27,9 @@ const allClearBtn = document.querySelector("#allClearBtn");
 allClearBtn.addEventListener("click", () => clearCalculator());
 
 const display = document.querySelector("#display");
-display.textContent = "0";
 
 function operate(operator, operandOne, operandTwo) {
+  if (isDisabled) return;
   if (operator === "+") {
     display.textContent = add(operandOne, operandTwo);
   }
@@ -72,7 +76,7 @@ function divide(operandOne, operandTwo) {
     displayError(1);
     return "¯\\_(ツ)_/¯";
   } else {
-    return (operandOne / operandTwo);
+    return operandOne / operandTwo;
   }
 }
 
@@ -94,7 +98,7 @@ function isOperator(symbol) {
 }
 
 function processInput(symbol) {
-  if (isErrorState) return;
+  if (isErrorState || isDisabled) return;
 
   if (display.textContent == 0 && !isOperator(symbol)) {
     // number = 0
@@ -116,14 +120,31 @@ function processInput(symbol) {
 }
 
 function clearCalculator() {
-  display.textContent = "0";
-  operandOne = undefined;
-  operandTwo = undefined;
-  operator = undefined;
-  expressionParts = [];
-  display.style.fontSize = "";
-  display.style.textAlign = "";
-  display.style.color = "";
-  display.style.lineHeight = "";
-  isErrorState = false;
+  if (!isDisabled) {
+    display.textContent = "0";
+    operandOne = undefined;
+    operandTwo = undefined;
+    operator = undefined;
+    expressionParts = [];
+    display.style.fontSize = "";
+    display.style.textAlign = "";
+    display.style.color = "";
+    display.style.lineHeight = "";
+    isErrorState = false;
+  }
+}
+
+function toggleCalculator() {
+  if (isDisabled) {
+    isDisabled = false;
+    powerBtn.textContent = "OFF";
+    display.style.backgroundColor = "whitesmoke";
+    display.textContent = "0";
+  } else {
+    clearCalculator();
+    isDisabled = true;
+    powerBtn.textContent = "ON";
+    display.style.backgroundColor = "";
+    display.textContent = "";
+  }
 }
