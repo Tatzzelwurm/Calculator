@@ -2,7 +2,6 @@ body {
   background-color: rgb(224, 248, 196);
 }
 
-
 #calculator {
   background-color: cadetblue;
   display: flex;
@@ -15,7 +14,7 @@ body {
   border-radius: 7px;
 }
 #display {
-  background-color: whitesmoke;
+  background-color: gray;
   height: 80px;
   width: 400px;
   border-radius: 10px;
@@ -46,6 +45,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100px;
+  gap: 50px;
 }
 
 #top {
@@ -68,10 +68,16 @@ button {
   font-size: 25px;
 }
 
-#allClearBtn {
+.controlBtn {
   height: 50px;
-  width: 50px;
-  background-color: crimson;
+  width: 70px;
   color: white;
   font-weight: 900;
+}
+
+#allClearBtn {
+  background-color: crimson;
+}
+#powerBtn {
+  background-color: rgb(20, 107, 220);
 }
