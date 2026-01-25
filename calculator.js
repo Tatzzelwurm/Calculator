@@ -32,12 +32,15 @@ function operate(operator, operandOne, operandTwo) {
   if (isDisabled) return;
   if (operator === "+") {
     display.textContent = add(operandOne, operandTwo);
+    expressionParts = []
   }
   if (operator === "-") {
     display.textContent = subtract(operandOne, operandTwo);
+    expressionParts = []
   }
   if (operator === "*") {
     display.textContent = Number(multiply(operandOne, operandTwo));
+    expressionParts = []
   }
   if (operator === "÷") {
     const result = divide(operandOne, operandTwo);
@@ -46,6 +49,7 @@ function operate(operator, operandOne, operandTwo) {
     } else {
       display.textContent = result;
     }
+    expressionParts = []
   }
   if (
     operator === undefined ||
@@ -99,7 +103,7 @@ function isOperator(symbol) {
 
 function processInput(symbol) {
   if (isErrorState || isDisabled) return;
-
+  
   if (display.textContent == 0 && !isOperator(symbol)) {
     // number = 0
     display.textContent = display.textContent.replace("0", symbol);
@@ -108,9 +112,9 @@ function processInput(symbol) {
   } else if (display.textContent != 0 && !isOperator(symbol)) {
     // number > 0
     display.textContent += symbol;
-  } else if (display.textContent != 0 && isOperator(symbol)) {
+  } else if (display.textContent != 0 && isOperator(symbol) && expressionParts.length < 3) {
     display.textContent += ` ${symbol} `;
-  }
+}
 
   expressionParts = display.textContent.split(" ");
 
