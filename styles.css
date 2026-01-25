@@ -6,17 +6,18 @@ body {
   background-color: cadetblue;
   display: flex;
   flex-direction: column;
-  height: 500px;
-  width: 450px;
+  height: 600px;
+  width: 400px;
   flex-direction: column;
   margin: 0 auto;
   border: 2px solid black;
   border-radius: 7px;
+  gap: 15px;
 }
 #display {
   background-color: gray;
   height: 80px;
-  width: 400px;
+  width: 350px;
   border-radius: 10px;
   border: 2px solid black;
   font-size: 70px;
@@ -28,36 +29,40 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  width: 300px;
+  width: 295px;
 }
 
 #operatorsPad {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex-grow: 0;
+  flex-grow: 1;
   gap: 25px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #functionalPad {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 100px;
+  justify-content: space-around;
   gap: 50px;
 }
 
 #top {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 130px;
+  align-items: flex-end;
+  height: 150px;
+}
+
+#middle {
+  display: flex;
+  justify-content: center;
 }
 
 #bottom {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-grow: 1;
 }
 
