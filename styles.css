@@ -28,7 +28,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 35px;
   width: 295px;
 }
 
@@ -39,6 +40,7 @@ body {
   flex-grow: 1;
   gap: 25px;
   align-items: flex-start;
+  margin-right: 35px;
 }
 
 #functionalPad {
@@ -85,4 +87,7 @@ button {
 }
 #powerBtn {
   background-color: rgb(20, 107, 220);
+}
+#clearEntryBtn {
+  background-color: orange;
 }
