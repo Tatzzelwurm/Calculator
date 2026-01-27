@@ -47,7 +47,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 50px;
+  gap: 20px;
 }
 
 #top {
@@ -90,4 +90,7 @@ button {
 }
 #clearEntryBtn {
   background-color: orange;
+}
+#themeToggleBtn {
+  background-color: green;
 }
