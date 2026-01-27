@@ -4,9 +4,13 @@ let operator;
 let expressionParts = [];
 let isErrorState = false;
 let isDisabled = true;
+let lastInput;
 
 const powerBtn = document.querySelector("#powerBtn");
 powerBtn.addEventListener("click", () => toggleCalculator());
+
+const clearEntryBtn = document.querySelector("#clearEntryBtn")
+clearEntryBtn.addEventListener("click", () => clearLastEntry())
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", () =>
@@ -150,5 +154,13 @@ function toggleCalculator() {
     powerBtn.textContent = "ON";
     display.style.backgroundColor = "";
     display.textContent = "";
+  }
+}
+function clearLastEntry() {
+  lastInput = expressionParts.splice(-1, 1)
+  let str = display.textContent
+  display.textContent = str.substring(0, str.lastIndexOf(" "));
+  if (expressionParts.length == 0) {
+    display.textContent = "0"
   }
 }
