@@ -73,6 +73,8 @@ button {
   width: 70px;
   border-radius: 15px;
   font-size: 25px;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 .controlBtn {
@@ -93,4 +95,16 @@ button {
 }
 #themeToggleBtn {
   background-color: green;
+}
+body.dark-theme {
+  background-color: lightslategray;
+}
+#calculator.dark-theme {
+  background-color: rgb(77, 77, 77);
+}
+button.dark-theme {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  font-weight: 700;
+  border: 2px solid black;
 }
