@@ -5,12 +5,19 @@ let expressionParts = [];
 let isErrorState = false;
 let isDisabled = true;
 let lastInput;
+let currentTheme = "Light"
 
 const powerBtn = document.querySelector("#powerBtn");
 powerBtn.addEventListener("click", () => toggleCalculator());
 
 const clearEntryBtn = document.querySelector("#clearEntryBtn")
 clearEntryBtn.addEventListener("click", () => clearLastEntry())
+
+const allClearBtn = document.querySelector("#allClearBtn");
+allClearBtn.addEventListener("click", () => clearCalculator());
+
+const themeToggleBtn = document.querySelector("#themeToggleBtn")
+themeToggleBtn.addEventListener("click", () => toggleTheme())
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", () =>
@@ -27,8 +34,6 @@ operators.forEach((operator) =>
   operator.addEventListener("click", () => processInput(operator.textContent)),
 );
 
-const allClearBtn = document.querySelector("#allClearBtn");
-allClearBtn.addEventListener("click", () => clearCalculator());
 
 const display = document.querySelector("#display");
 
@@ -146,7 +151,7 @@ function toggleCalculator() {
   if (isDisabled) {
     isDisabled = false;
     powerBtn.textContent = "OFF";
-    display.style.backgroundColor = "whitesmoke";
+    currentTheme == "Light" ? display.style.backgroundColor = "whitesmoke" : display.style.backgroundColor = "lightblue" 
     display.textContent = "0";
   } else {
     clearCalculator();
@@ -156,11 +161,41 @@ function toggleCalculator() {
     display.textContent = "";
   }
 }
-function clearLastEntry() {
+function clearLastEntry() { 
+  if (!isDisabled) {
   lastInput = expressionParts.splice(-1, 1)
   let str = display.textContent
   display.textContent = str.substring(0, str.lastIndexOf(" "));
   if (expressionParts.length == 0) {
     display.textContent = "0"
+    display.style.fontSize = "";
+    display.style.textAlign = "";
+    display.style.color = "";
+    display.style.lineHeight = "";
+    isErrorState = false;
+  }
+}
+}
+function toggleTheme() {
+  const body = document.body
+  const calculator = document.querySelector("#calculator")
+  const buttons = document.querySelectorAll("button")
+ 
+  if (currentTheme == "Light") {
+    themeToggleBtn.textContent = "☀️"
+    currentTheme = "Dark"
+    body.classList.add("dark-theme")
+    calculator.classList.add("dark-theme")
+    buttons.forEach(number => number.classList.add("dark-theme")) 
+    !isDisabled ? display.style.backgroundColor = "lightblue" : display.style.backgroundColor = "" 
+  }
+  else {
+    themeToggleBtn.textContent = "🌙"
+    currentTheme = "Light"
+    body.classList.remove("dark-theme")
+    calculator.classList.remove("dark-theme")
+    buttons.forEach(number => number.classList.remove("dark-theme"))
+    !isDisabled ? display.style.backgroundColor = "whitesmoke" : display.style.backgroundColor = "" 
+    
   }
 }
