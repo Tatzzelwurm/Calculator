@@ -10,6 +10,7 @@ body {
   width: 400px;
   flex-direction: column;
   margin: 0 auto;
+  margin-top: 100px;
   border: 2px solid black;
   border-radius: 7px;
   gap: 15px;
@@ -57,10 +58,9 @@ body {
   align-items: center;
   height: 100px;
 }
-#displayContainer{
+#displayContainer {
   display: flex;
   justify-content: center;
-  
 }
 
 #middle {
@@ -102,7 +102,7 @@ button {
 #themeToggleBtn {
   background-color: green;
 }
-#projectHeader{
+#projectHeader {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -114,13 +114,18 @@ a {
 }
 p {
   font-size: 20px;
+  font-weight: 500;
 }
 #topLink {
- color: white;
+  color: white;
 }
 #githubLink {
   color: purple;
-  font-size: 17px;
+  font-size: 19px;
+}
+#credit {
+  font-size: 19px;
+  font-weight: 500;
 }
 
 body.dark-theme {
@@ -134,4 +139,16 @@ button.dark-theme {
   color: white;
   font-weight: 700;
   border: 2px solid black;
+}
+p.dark-theme {
+  color: white;
+}
+#topLink.dark-theme {
+  color: wheat;
+}
+#githubLink.dark-theme {
+  color: rgb(252, 144, 144);
+}
+#credit.dark-theme {
+  color: white;
 }
