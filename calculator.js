@@ -189,32 +189,22 @@ function toggleTheme() {
   const credit = document.querySelector("#credit");
   const topLink = document.querySelector("#topLink");
   const githubLink = document.querySelector("#githubLink");
+  const themeElements = [body,calculator,...buttons,headerText,credit,topLink,githubLink]
 
   if (currentTheme == "Light") {
     themeToggleBtn.textContent = "☀️";
     currentTheme = "Dark";
-    body.classList.add("dark-theme");
-    calculator.classList.add("dark-theme");
-    buttons.forEach((number) => number.classList.add("dark-theme"));
+    themeElements.forEach(element => element.classList.add("dark-theme"))
     !isDisabled
       ? (display.style.backgroundColor = "lightblue")
       : (display.style.backgroundColor = "");
-    headerText.classList.add("dark-theme");
-    topLink.classList.add("dark-theme");
-    githubLink.classList.add("dark-theme");
-    credit.classList.add("dark-theme");
   } else {
     themeToggleBtn.textContent = "🌙";
     currentTheme = "Light";
-    body.classList.remove("dark-theme");
-    calculator.classList.remove("dark-theme");
-    buttons.forEach((number) => number.classList.remove("dark-theme"));
+    themeElements.forEach(element => element.classList.remove("dark-theme"))
     !isDisabled
       ? (display.style.backgroundColor = "whitesmoke")
       : (display.style.backgroundColor = "");
-    headerText.classList.remove("dark-theme");
-    topLink.classList.remove("dark-theme");
-    githubLink.classList.remove("dark-theme");
-    credit.classList.remove("dark-theme");
+
   }
 }
