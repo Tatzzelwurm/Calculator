@@ -4,8 +4,8 @@ let operator;
 let expressionParts = [];
 let isErrorState = false;
 let isDisabled = true;
-let lastInput;
 let currentTheme = "Light";
+let result;
 
 const powerBtn = document.querySelector("#powerBtn");
 powerBtn.addEventListener("click", () => toggleCalculator());
@@ -39,21 +39,25 @@ const display = document.querySelector("#display");
 function operate(operator, operandOne, operandTwo) {
   if (isDisabled) return;
   if (operator === "+") {
-    display.textContent = add(operandOne, operandTwo);
+    result = add(operandOne, operandTwo);
+    display.textContent = result;
     expressionParts = [];
   }
   if (operator === "-") {
-    display.textContent = subtract(operandOne, operandTwo);
+    result = subtract(operandOne, operandTwo);
+    display.textContent = result;
     expressionParts = [];
   }
   if (operator === "*") {
-    display.textContent = Number(multiply(operandOne, operandTwo));
+    result = Number(multiply(operandOne, operandTwo));
+    display.textContent = result;
     expressionParts = [];
   }
   if (operator === "÷") {
-    const result = divide(operandOne, operandTwo);
+    result = divide(operandOne, operandTwo);
     if (typeof result === "number") {
-      display.textContent = Number(result.toFixed(3));
+      result = Number(result.toFixed(3));
+      display.textContent = result;
     } else {
       display.textContent = result;
     }
@@ -117,7 +121,11 @@ function processInput(symbol) {
     display.textContent = display.textContent.replace("0", symbol);
   } else if (display.textContent == 0 && isOperator(symbol)) {
     display.textContent += ` ${symbol} `;
-  } else if (display.textContent != 0 && !isOperator(symbol)) {
+  } else if (
+    display.textContent != 0 &&
+    !isOperator(symbol) &&
+    display.textContent != String(result)
+  ) {
     // number > 0
     display.textContent += symbol;
   } else if (
@@ -126,6 +134,9 @@ function processInput(symbol) {
     expressionParts.length < 3
   ) {
     display.textContent += ` ${symbol} `;
+  }
+  if (display.textContent == result && !isOperator(symbol)) {
+    display.textContent = symbol;
   }
 
   expressionParts = display.textContent.split(" ");
@@ -141,6 +152,7 @@ function clearCalculator() {
     operandOne = undefined;
     operandTwo = undefined;
     operator = undefined;
+    result = undefined;
     expressionParts = [];
     display.style.fontSize = "";
     display.style.textAlign = "";
@@ -168,9 +180,12 @@ function toggleCalculator() {
 }
 function clearLastEntry() {
   if (!isDisabled) {
-    lastInput = expressionParts.splice(-1, 1);
     let str = display.textContent;
+    str = str.trim();
     display.textContent = str.substring(0, str.lastIndexOf(" "));
+    if (display.textContent == "") {
+      display.textContent = "0";
+    }
     if (expressionParts.length == 0) {
       display.textContent = "0";
       display.style.fontSize = "";
@@ -189,22 +204,29 @@ function toggleTheme() {
   const credit = document.querySelector("#credit");
   const topLink = document.querySelector("#topLink");
   const githubLink = document.querySelector("#githubLink");
-  const themeElements = [body,calculator,...buttons,headerText,credit,topLink,githubLink]
+  const themeElements = [
+    body,
+    calculator,
+    ...buttons,
+    headerText,
+    credit,
+    topLink,
+    githubLink,
+  ];
 
   if (currentTheme == "Light") {
     themeToggleBtn.textContent = "☀️";
     currentTheme = "Dark";
-    themeElements.forEach(element => element.classList.add("dark-theme"))
+    themeElements.forEach((element) => element.classList.add("dark-theme"));
     !isDisabled
       ? (display.style.backgroundColor = "lightblue")
       : (display.style.backgroundColor = "");
   } else {
     themeToggleBtn.textContent = "🌙";
     currentTheme = "Light";
-    themeElements.forEach(element => element.classList.remove("dark-theme"))
+    themeElements.forEach((element) => element.classList.remove("dark-theme"));
     !isDisabled
       ? (display.style.backgroundColor = "whitesmoke")
       : (display.style.backgroundColor = "");
-
   }
 }
