@@ -123,9 +123,13 @@ p {
   color: purple;
   font-size: 19px;
 }
+#projectLink {
+ color: darkblue;
+}
 #credit {
   font-size: 19px;
   font-weight: 500;
+  
 }
 
 body.dark-theme {
@@ -151,4 +155,7 @@ p.dark-theme {
 }
 #credit.dark-theme {
   color: white;
+}
+#projectLink.dark-theme {
+  color: rgba(0, 255, 255, 0.849);
 }

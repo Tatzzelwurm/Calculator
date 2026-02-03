@@ -222,6 +222,7 @@ function toggleTheme() {
   const credit = document.querySelector("#credit");
   const topLink = document.querySelector("#topLink");
   const githubLink = document.querySelector("#githubLink");
+  const projectLink = document.querySelector("#projectLink")
   const themeElements = [
     body,
     calculator,
@@ -230,6 +231,7 @@ function toggleTheme() {
     credit,
     topLink,
     githubLink,
+    projectLink,
   ];
 
   if (currentTheme == "Light") {
