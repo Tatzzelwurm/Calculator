@@ -24,6 +24,11 @@ equals.addEventListener("click", () =>
   operate(operator, operandOne, operandTwo),
 );
 
+const decimalPoint = document.querySelector("#decimalPoint");
+decimalPoint.addEventListener("click", () =>
+  processInput(decimalPoint.textContent),
+);
+
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>
   number.addEventListener("click", () => processInput(number.textContent)),
@@ -115,35 +120,48 @@ function isOperator(symbol) {
 
 function processInput(symbol) {
   if (isErrorState || isDisabled) return;
+  let lastChar = display.textContent[display.textContent.length - 1];
+  let currentOperand = expressionParts[expressionParts.length - 1] || "";
 
-  if (display.textContent == 0 && !isOperator(symbol)) {
-    // number = 0
-    display.textContent = display.textContent.replace("0", symbol);
-  } else if (display.textContent == 0 && isOperator(symbol)) {
-    display.textContent += ` ${symbol} `;
-  } else if (
-    display.textContent != 0 &&
-    !isOperator(symbol) &&
-    display.textContent != String(result)
+  if (
+    symbol == "." &&
+    lastChar != "." &&
+    lastChar != " " &&
+    !currentOperand.includes(".")
   ) {
-    // number > 0
     display.textContent += symbol;
-  } else if (
-    display.textContent != 0 &&
-    isOperator(symbol) &&
-    expressionParts.length < 3
-  ) {
-    display.textContent += ` ${symbol} `;
-  }
-  if (display.textContent == result && !isOperator(symbol)) {
-    display.textContent = symbol;
-  }
+  } else {
+    if (display.textContent == "0" && !isOperator(symbol)) {
+      // number = 0
+      display.textContent = display.textContent.replace("0", symbol);
+    } else if (display.textContent === "0" && isOperator(symbol)) {
+      display.textContent += ` ${symbol} `;
+    } else if (
+      display.textContent !== 0 &&
+      !isOperator(symbol) &&
+      display.textContent != String(result) &&
+      symbol != "."
+    ) {
+      // number > 0
+      display.textContent += symbol;
+    } else if (
+      display.textContent !== 0 &&
+      isOperator(symbol) &&
+      expressionParts.length < 3
+    ) {
+      display.textContent += ` ${symbol} `;
+    }
 
-  expressionParts = display.textContent.split(" ");
+    if (display.textContent == result && !isOperator(symbol)) {
+      display.textContent = symbol;
+    }
 
-  operandOne = +expressionParts[0];
-  operator = expressionParts[1];
-  operandTwo = +expressionParts[2];
+    expressionParts = display.textContent.split(" ");
+
+    operandOne = +expressionParts[0];
+    operator = expressionParts[1];
+    operandTwo = +expressionParts[2];
+  }
 }
 
 function clearCalculator() {
