@@ -127,7 +127,8 @@ function processInput(symbol) {
     symbol == "." &&
     lastChar != "." &&
     lastChar != " " &&
-    !currentOperand.includes(".")
+    !currentOperand.includes(".") &&
+    String(currentOperand).length < 4
   ) {
     display.textContent += symbol;
   } else {
@@ -140,7 +141,8 @@ function processInput(symbol) {
       display.textContent !== 0 &&
       !isOperator(symbol) &&
       display.textContent != String(result) &&
-      symbol != "."
+      symbol != "." &&
+      String(currentOperand).length < 4
     ) {
       // number > 0
       display.textContent += symbol;
@@ -222,7 +224,7 @@ function toggleTheme() {
   const credit = document.querySelector("#credit");
   const topLink = document.querySelector("#topLink");
   const githubLink = document.querySelector("#githubLink");
-  const projectLink = document.querySelector("#projectLink")
+  const projectLink = document.querySelector("#projectLink");
   const themeElements = [
     body,
     calculator,
