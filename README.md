@@ -1,5 +1,6 @@
 # 🧮 Calculator
-A fully functional browser-based calculator with graphical interface built as part of The Odin Project curriculum.
+A fully functional [browser-based calculator](https://tatzzelwurm.github.io/Calculator/) with graphical interface built as part of The Odin Project curriculum.
+
 
 ## ⚙️ Core Functionality
 Basic operations: Addition, subtraction, multiplication, division
